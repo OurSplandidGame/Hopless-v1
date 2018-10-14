@@ -42,6 +42,7 @@ public class PlayerController : Character {
             Attack();
         }else if(Input.GetKeyDown("x") && !attacking && skill1_Timer <= 0)
         {
+            attacking = true;
             skill1_Timer = skill1_Cooldown;
             animator.SetTrigger("Attack2");
             Skill2();
@@ -152,5 +153,8 @@ public class PlayerController : Character {
         audioSource.clip = Audios[4];
         audioSource.Play();
         deadUI.SetActive(true);
+    }
+    public void FinishAttack(){
+        attacking = false;
     }
 }

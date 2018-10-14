@@ -470,7 +470,9 @@ ModelImporter:
       has import animation warnings that might lower retargeting quality:\nNote: Activate
       translation DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween
       humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
-      has translation animation that will be discarded.\n"
+      has translation animation that will be discarded.\nEvent DeathUI has a time
+      (4.111390) outside the clip's valid range (0.000000..3.291667). It will never
+      be fired"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -4076,7 +4078,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.5114503
+        functionName: FinishAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
