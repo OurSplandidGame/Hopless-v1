@@ -5,6 +5,20 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - Slot
+  - MainInventory
+  - Slots
+  - Canvas
+  - DraggingItem
+  - Animal
+  - Item
+  - Panel
+  - Pickup
+  - ItemIcon
+  - EventSystem
+  - Hotbar
+  - Tooltip
+  - Water
   layers:
   - Default
   - TransparentFX

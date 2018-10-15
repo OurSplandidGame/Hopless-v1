@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using MagicalFX;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Animator))]
 public class PlayerController : Character {
@@ -21,6 +22,8 @@ public class PlayerController : Character {
     public AudioClip[] Audios;
     public AudioSource audioSource;
     public GameObject deadUI;
+    public GameObject hudCanvas;
+    public HUDCanvas script;
     protected override void Awake()
     {
         base.Awake();
@@ -30,6 +33,7 @@ public class PlayerController : Character {
         skill1.GetComponentInChildren<FX_HitSpawner>().attacker = gameObject;
         skill2.GetComponent<Explosion>().attacker = gameObject;
         audioSource = GetComponent<AudioSource>();
+        script = hudCanvas.GetComponent<HUDCanvas>();
     }
 
     protected override void FixedUpdate()
@@ -153,7 +157,9 @@ public class PlayerController : Character {
         audioSource.clip = Audios[4];
         audioSource.Play();
         deadUI.SetActive(true);
+        script.onGameOver();
     }
+
     public void FinishAttack(){
         attacking = false;
     }

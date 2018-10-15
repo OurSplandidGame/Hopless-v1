@@ -122,7 +122,7 @@ public class Character : MonoBehaviour
     {
         if (debug) print("Damage take: " + amount);
         if (!isActive) return;
-
+        print("hurt");
         Instantiate(hitEffect, this.transform.position + new Vector3(0, 1, 0), hitEffect.transform.rotation);
         foreach (string e in enemyTagList)
         {

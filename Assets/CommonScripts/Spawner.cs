@@ -36,24 +36,21 @@ public class Spawner : MonoBehaviour {
             if(Random.Range(0.0f, 1.0f) <= factor)
             {
      
-                float dist = Random.Range(rangeMin, rangeMax);
+                float dist = Mathf.Sqrt(Random.Range(rangeMin, rangeMax));
                 float rot = Random.Range(0f, 360f);
-                Vector3 pos = new Vector3(0, 50, dist);
+                Vector3 pos = new Vector3(0, 50, dist*dist);
                 pos = Quaternion.Euler(0, rot, 0) * pos;
                 pos += transform.position;
 
                 RaycastHit hit = new RaycastHit();
-                if (Physics.Raycast(pos, new Vector3(0, -1, 0),out hit,100f, 1<<9))
-                {
-                    if (hit.point.y > 2)
-                    {
+                if(Physics.Raycast(pos, new Vector3(0, -1, 0), out hit, 100f)){
+                    if(hit.collider.tag == "Floor"){
                         Instantiate(obj, hit.point, transform.rotation);
+                    }else{
+                        return;
                     }
                 }
-                
             }
         }
-        
-
     }
 }

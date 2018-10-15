@@ -14,6 +14,7 @@ public class HUDCanvas : MonoBehaviour {
     public Image damageImage;
     public float flashSpeed = 5f;
     public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
+    public bool gameOver = false;
 
     private PlayerController player;
 
@@ -45,10 +46,15 @@ public class HUDCanvas : MonoBehaviour {
             SurvivalUI.SetActive(false);
             BagUI.SetActive(false);
             damageImage.color = new Color(50, 50, 50, 0.3f);
-            if (Input.GetMouseButton(0))
+
+            if (gameOver && Input.GetMouseButton(0))
             {
                 SceneManager.LoadScene("GameStart");
             }
         }
+    }
+
+    public void onGameOver(){
+        gameOver = true;
     }
 }

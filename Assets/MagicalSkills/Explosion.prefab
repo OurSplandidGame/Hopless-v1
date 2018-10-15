@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 1920214485900174}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 80, y: 0, z: 80}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4454294099181530}
   - {fileID: 4276922700518850}
@@ -605,7 +605,7 @@ MonoBehaviour:
   clear: 3
   delay: 1.5
   damage: 50
-  range: 10
+  range: 3
 --- !u!198 &198041985351550148
 ParticleSystem:
   m_ObjectHideFlags: 1
