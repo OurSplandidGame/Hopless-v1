@@ -6,6 +6,8 @@ public class Sun : MonoBehaviour {
     public int secondsPerDay = 1;
     public GameObject[] trans;
     public GameObject bossObj;
+    public AudioClip[] backGroundMuisc;
+    private AudioSource audio;
     private float speed;
     // Use this for initialization
     private float savedSpeed;
@@ -17,6 +19,9 @@ public class Sun : MonoBehaviour {
         speed = 360.0f / secondsPerDay / 60.0f;
         day = true;
         bossFlag = false;
+        audio = GetComponent<AudioSource>();
+        audio.clip = backGroundMuisc[0];
+        audio.Play();
     }
 
     //
@@ -37,6 +42,8 @@ public class Sun : MonoBehaviour {
         if(angle > 182 && angle < 187 && day)
         {
             print("-----------------------------night---------------------------------");
+            audio.clip = backGroundMuisc[1];
+            audio.Play();
             GameObject[] spawner = GameObject.FindGameObjectsWithTag("Spawner");
 
             foreach (GameObject e in spawner)
@@ -65,6 +72,8 @@ public class Sun : MonoBehaviour {
         {
             //If boss dead
             print("-----------------------------day---------------------------------");
+            audio.clip = backGroundMuisc[0];
+            audio.Play();
             GameObject[] undead = GameObject.FindGameObjectsWithTag("Undead");
             foreach (GameObject e in undead)
             {
@@ -78,7 +87,7 @@ public class Sun : MonoBehaviour {
             }
             day = true;
         }
-        print(angle);
+        //print(angle);
         transform.Rotate(Time.deltaTime* speed, 0, 0);
     }
 }

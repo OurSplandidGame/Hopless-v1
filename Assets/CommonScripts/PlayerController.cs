@@ -26,6 +26,7 @@ public class PlayerController : Character {
     public GameObject deadUI;
     public GameObject hudCanvas;
     public HUDCanvas script;
+    public Camera camera;
     protected override void Awake()
     {
         base.Awake();
@@ -61,12 +62,14 @@ public class PlayerController : Character {
         {
             Move(new Vector3());
             skill1_Timer = skill1_Cooldown;
-            Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit floorHit;
-            if (Physics.Raycast(camRay, out floorHit, 100f, floorMask))
-            {
-                Instantiate(tow, floorHit.transform);
-            }
+            Instantiate(tow, transform.position + transform.forward, transform.rotation);
+            //Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit floorHit;
+            //if (Physics.Raycast(camRay, out floorHit, 100f, floorMask))
+            //{
+            //    Instantiate(tow, floorHit.transform);
+            //    print(floorHit.transform.position);
+            //}
         }
         else if (!attacking && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {

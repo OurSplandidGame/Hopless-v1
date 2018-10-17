@@ -49,7 +49,7 @@ public class Spawner : MonoBehaviour {
                     }
                     else
                     {
-                        print(hit.collider.tag);
+                        //print(hit.collider.tag);
                         return;
                     }
                 }
