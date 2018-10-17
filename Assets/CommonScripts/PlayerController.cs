@@ -62,14 +62,15 @@ public class PlayerController : Character {
         {
             Move(new Vector3());
             skill1_Timer = skill1_Cooldown;
-            Instantiate(tow, transform.position + transform.forward, transform.rotation);
-            //Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //RaycastHit floorHit;
-            //if (Physics.Raycast(camRay, out floorHit, 100f, floorMask))
-            //{
-            //    Instantiate(tow, floorHit.transform);
-            //    print(floorHit.transform.position);
-            //}
+            //Instantiate(tow, transform.position + transform.forward, transform.rotation);
+            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit floorHit;
+          
+            if (Physics.Raycast(camRay, out floorHit, 100f, floorMask))
+            {
+                print(floorHit.point);
+                Instantiate(tow, floorHit.point,transform.rotation);
+            }
         }
         else if (!attacking && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
