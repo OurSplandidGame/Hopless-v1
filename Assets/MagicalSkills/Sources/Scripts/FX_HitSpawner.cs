@@ -8,8 +8,8 @@ namespace MagicalFX
 	{
 
         public GameObject attacker;
-        public float range = 5;
-        public float damage = 50;
+        public float range = 3;
+        public float damage = 120;
 		public GameObject FXSpawn;
 		public bool DestoyOnHit = false;
 		public bool FixRotation = false;
@@ -42,29 +42,45 @@ namespace MagicalFX
 	
 		void OnTriggerEnter (Collider other)
 		{
-            if(other.gameObject.tag == "Floor")
+            if (other.gameObject.tag == "Floor")
             {
                 Character script = attacker.GetComponent<Character>();
                 List<GameObject> targets =  script.GetEnemies();
                 foreach(GameObject e in targets)
                 {
-                    print(Vector3.Distance(transform.position, e.transform.position));
-                    if (Vector3.Distance(transform.position,e.transform.position) <= range)
-                    {
-                        
-                        Character targetScript = e.GetComponent<Character>();
+                    if (e == null) continue;
 
-                        targetScript.TakeDamage(attacker, 0, damage);
+                    float dist = Vector3.Distance(transform.position, e.transform.position);
+                    if (dist <= range)
+                    {
+                        Character targetScript = e.GetComponent<Character>();
+                        float actualDMG = damage * Mathf.Lerp(1f, 0.5f, dist / range);
+                        //print("++++++++++++Damage: " + actualDMG);
+                        targetScript.TakeDamage(attacker, 0, actualDMG);
                     }
                 }
                 Spawn();
             }
-			
 		}
 	
 		void OnCollisionEnter (Collision collision)
 		{
-			Spawn ();
-		}
-	}
+            Character script = attacker.GetComponent<Character>();
+            List<GameObject> targets = script.GetEnemies();
+            foreach (GameObject e in targets)
+            {
+                if (e == null) continue;
+
+                float dist = Vector3.Distance(transform.position, e.transform.position);
+                if (dist <= range)
+                {
+                    Character targetScript = e.GetComponent<Character>();
+                    float actualDMG = damage * Mathf.Lerp(1f, 0.5f, dist / range);
+                    // print("===============Damage: " + actualDMG);
+                    targetScript.TakeDamage(attacker, 0, actualDMG);
+                }
+            }
+            Spawn();
+        }
+    }
 }

@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MagicalFX;
 
 public class LasserTower : AiCharacter {
 
     public GameObject tip;
-
+    public GameObject skill;
     Light flash;
     LineRenderer lr;
     float lightTimer = 0;
@@ -14,7 +15,7 @@ public class LasserTower : AiCharacter {
     {
 
         base.Awake();
-
+        skill.GetComponentInChildren<FX_HitSpawner>().attacker = gameObject;
         flash = tip.GetComponent<Light>();
         lr = tip.GetComponent<LineRenderer>();
         lr.useWorldSpace = true;
@@ -31,7 +32,7 @@ public class LasserTower : AiCharacter {
         else
         {
             flash.enabled = false ;
-            lr.enabled = false;
+            //lr.enabled = false;
         }
     }
 
@@ -39,10 +40,11 @@ public class LasserTower : AiCharacter {
     {
         base.AnimAttack();
         lightTimer = flashTime;
-        lr.SetPosition(0, tip.transform.position);
-        lr.SetPosition(1, target.transform.position);
-        lr.enabled = true;
-        DamageTarget();
+        //lr.SetPosition(0, tip.transform.position);
+        //lr.SetPosition(1, target.transform.position);
+        //lr.enabled = true;
+        Instantiate(skill, target.transform);
+        //DamageTarget();
     }
 
 }

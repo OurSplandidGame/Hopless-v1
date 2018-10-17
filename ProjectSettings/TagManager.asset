@@ -19,6 +19,10 @@ TagManager:
   - Hotbar
   - Tooltip
   - Water
+  - Undead
+  - Spawner
+  - Boss
+  - Tower
   layers:
   - Default
   - TransparentFX

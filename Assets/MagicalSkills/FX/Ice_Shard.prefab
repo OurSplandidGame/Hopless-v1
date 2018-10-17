@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b69c254cd7aac34cae94e53410c6ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0.001, z: 0}
+  Offset: {x: 0, y: 1, z: 0}
   Normal: 0
   Mode: 0
 --- !u!114 &11457922
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6abd900d106201b4fb1e780b626ff25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Force: 3000
+  Force: 5000
 --- !u!114 &11457928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -304,6 +304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ffe117472f28a42ae488a517f0f3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attacker: {fileID: 0}
+  range: 4
+  damage: 120
   FXSpawn: {fileID: 168688, guid: 661b630e756d3ba43803c9baddaba015, type: 2}
   DestoyOnHit: 1
   FixRotation: 0

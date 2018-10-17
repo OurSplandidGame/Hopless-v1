@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Animator))]
 public class PlayerController : Character {
-    public float mana;
-    public float maxMana;
+    public float mana = 100;
+    public float maxMana = 100;
+    public float manaRestore = 0.5f;
     public float armor;
     public float maxArmor;
     public float maxDamage;
@@ -14,6 +15,7 @@ public class PlayerController : Character {
     public GameObject skill1;
     public float skill1_Cooldown;
     public GameObject skill2;
+    public GameObject tow;
     public Camera cam;
     public ParticleSystem attackEffect;
     private CharacterController player;
@@ -40,16 +42,31 @@ public class PlayerController : Character {
     {
         base.FixedUpdate();
         if (!isActive) return;
-        if (Input.GetKeyDown("z") && !attacking)
+        if (Input.GetKeyDown("j") && !attacking)
         {
             Move(new Vector3());
             Attack();
-        }else if(Input.GetKeyDown("x") && !attacking && skill1_Timer <= 0)
+        }
+        else if(Input.GetKeyDown("k") && !attacking && skill1_Timer <= 0)
         {
-            attacking = true;
-            skill1_Timer = skill1_Cooldown;
-            animator.SetTrigger("Attack2");
+            Move(new Vector3());
             Skill2();
+        }
+        else if (Input.GetKeyDown("l") && !attacking && skill1_Timer <= 0)
+        {
+            Move(new Vector3());
+            Skill1();
+        }
+        else if (Input.GetKeyDown("n") && !attacking && skill1_Timer <= 0)
+        {
+            Move(new Vector3());
+            skill1_Timer = skill1_Cooldown;
+            Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit floorHit;
+            if (Physics.Raycast(camRay, out floorHit, 100f, floorMask))
+            {
+                Instantiate(tow, floorHit.transform);
+            }
         }
         else if (!attacking && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
@@ -67,9 +84,10 @@ public class PlayerController : Character {
         {
             Move(new Vector3());
         }
-
-
         skill1_Timer -= Time.deltaTime;
+
+        mana += manaRestore * Time.deltaTime;
+        if (mana > maxMana) mana = maxMana;
     }
     void OnTriggerEnter(Collider other)
     {
@@ -100,23 +118,37 @@ public class PlayerController : Character {
     {
         Instantiate(skill, position, skill.transform.rotation);
     }
-
-
+    
     protected void Skill1()
     {
-        Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit floorHit;
-        if (Physics.Raycast(camRay, out floorHit, 100f, floorMask))
+        //Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
+        //RaycastHit floorHit;
+        //if (Physics.Raycast(camRay, out floorHit, 100f, floorMask))
+        //{
+        //    PositionCast(floorHit.point,skill1);
+        //}
+        if(target != null && mana >= 10)
         {
-            PositionCast(floorHit.point,skill1);
+            PositionCast(target.transform.position, skill1);
+            mana -= 10;
+            skill1_Timer = skill1_Cooldown;
         }
     }
 
     protected void Skill2()
     {
-        PositionCast(transform.position, skill2);
-        audioSource.clip = Audios[3];
-        audioSource.Play();
+        if (mana >= 10)
+        {
+            attacking = true;
+            mana -= 10;
+            skill1_Timer = skill1_Cooldown;
+            animator.SetTrigger("Attack2");
+            PositionCast(transform.position, skill2);
+            audioSource.clip = Audios[3];
+            audioSource.Play();
+            GetComponent<Rigidbody>().isKinematic = true;
+
+        }
     }
 
     protected override void AnimMove(float speed)
@@ -162,5 +194,6 @@ public class PlayerController : Character {
 
     public void FinishAttack(){
         attacking = false;
+        GetComponent<Rigidbody>().isKinematic = false;
     }
 }

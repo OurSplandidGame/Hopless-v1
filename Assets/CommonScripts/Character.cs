@@ -39,6 +39,7 @@ public class Character : MonoBehaviour
         target = null;
         foreach (GameObject e in targets)
         {
+            if (e == null) continue;
             Character script = e.GetComponent<Character>();
             if (!script.IsActive) continue;
             float distance = (e.transform.position - transform.position).magnitude;
@@ -120,17 +121,23 @@ public class Character : MonoBehaviour
 
     public virtual void TakeDamage(GameObject attacker, int type, float amount)
     {
+        
         if (debug) print("Damage take: " + amount);
         if (!isActive) return;
-        print("hurt");
-        Instantiate(hitEffect, this.transform.position + new Vector3(0, 1, 0), hitEffect.transform.rotation);
-        foreach (string e in enemyTagList)
+        if(hitEffect != null)
+            Instantiate(hitEffect, this.transform.position + new Vector3(0, 1, 0), hitEffect.transform.rotation);
+        if(attacker != null)
         {
-            if(e == attacker.tag)
+            foreach (string e in enemyTagList)
             {
-                target = attacker;
+                if (e == null ) continue;
+                if(e == attacker.tag)
+                {
+                    target = attacker;
+                }
             }
         }
+
         AnimHurt();
         health -= amount;
         if(health <= 0)

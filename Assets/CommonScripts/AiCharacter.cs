@@ -27,8 +27,8 @@ public class AiCharacter : Character
         if (!isActive)
         {
             Vector3 posotion = transform.position;
-            transform.position -= new Vector3(0, (float)(0.3 * Time.deltaTime),0);
-            if (transform.position.y <= -5) Destroy(this.gameObject);
+            transform.position -= new Vector3(0, (float)(0.4 * Time.deltaTime),0);
+            if (transform.position.y <= -3) Destroy(this.gameObject);
             return;
         }
         base.FixedUpdate();

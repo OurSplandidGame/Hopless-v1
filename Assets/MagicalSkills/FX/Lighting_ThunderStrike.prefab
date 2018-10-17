@@ -64,7 +64,7 @@ Transform:
   m_GameObject: {fileID: 145810}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 8.18, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 477198}
   m_Father: {fileID: 445812}
@@ -287,6 +287,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ffe117472f28a42ae488a517f0f3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attacker: {fileID: 0}
+  range: 5
+  damage: 50
   FXSpawn: {fileID: 166620, guid: 2b55b3ea3a8c41e4698946f3edfd2b59, type: 2}
   DestoyOnHit: 1
   FixRotation: 0

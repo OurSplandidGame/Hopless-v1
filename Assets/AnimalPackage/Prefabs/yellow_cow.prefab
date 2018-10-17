@@ -839,7 +839,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1575068860245348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4487370419509844}
@@ -961,14 +961,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  discoverRange: 10
-  discoverAngle: 360
+  discoverRange: 5
+  discoverAngle: 270
   attackRange: 3
-  attackAngle: 30
-  attackInterval: 1
-  damage: 10
-  maxHealth: 50
-  health: 50
+  attackAngle: 90
+  attackInterval: 3
+  damage: 5
+  maxHealth: 40
+  health: 40
   healthRestore: 0
   enemyTagList:
   - Player
@@ -976,8 +976,8 @@ MonoBehaviour:
   strolling: 1
   strollInterval: 5
   strollRange: 5
-  loseTargetRange: 15
-  loseTargetTime: 10
+  loseTargetRange: 10
+  loseTargetTime: 5
   dropObj: {fileID: 1708825600953708, guid: c18ab21e8895da94080852241bca8d4d, type: 2}
   dropItemIds: 11000000
 --- !u!135 &135639722248748688
@@ -1001,10 +1001,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 3
+  m_Radius: 0.5
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6, z: 0.2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!137 &137721832670231430
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

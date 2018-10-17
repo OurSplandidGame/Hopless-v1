@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 195076410600852006}
   m_Layer: 0
   m_Name: Rhino_PBR
-  m_TagString: Animal
+  m_TagString: Undead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1775,23 +1775,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  discoverRange: 10
-  discoverAngle: 270
-  attackRange: 5
-  attackAngle: 90
+  discoverRange: Infinity
+  discoverAngle: 360
+  attackRange: 4.2
+  attackAngle: 180
   attackInterval: 1
-  damage: 10
-  maxHealth: 100
-  health: 100
+  damage: 7
+  maxHealth: 75
+  health: 75
   healthRestore: 0
   enemyTagList:
   - Player
+  hitEffect: {fileID: 120602, guid: d629562d5b6ff9648ad13c842f83c4aa, type: 2}
   strolling: 1
   strollInterval: 2
   strollRange: 8
   loseTargetRange: 15
   loseTargetTime: 10
-  drops: []
+  dropObj: {fileID: 0}
+  dropItemIds: 
 --- !u!136 &136818545887760410
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1814,7 +1816,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
