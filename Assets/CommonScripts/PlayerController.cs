@@ -100,7 +100,7 @@ public class PlayerController : Character {
         {
             PlayerInventory playerInventory = gameObject.GetComponent<PlayerInventory>();
             Rotate rotate = other.gameObject.GetComponent<Rotate>();
-            playerInventory.addItemToInventory(rotate.getItemId());
+            //playerInventory.addItemToInventory(rotate.getItemId());
             Destroy(other.gameObject);
             audioSource.clip = Audios[0];
             audioSource.Play();
