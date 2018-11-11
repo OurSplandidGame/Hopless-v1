@@ -30,6 +30,7 @@ public class Animal : AiCharacter
     protected override void AnimMove(float speed)
     {
         base.AnimMove(speed);
+       
         animator.SetFloat("Speed", speed);
     }
 

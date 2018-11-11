@@ -40,11 +40,7 @@ public class LasserTower : AiCharacter {
     {
         base.AnimAttack();
         lightTimer = flashTime;
-        //lr.SetPosition(0, tip.transform.position);
-        //lr.SetPosition(1, target.transform.position);
-        //lr.enabled = true;
         Instantiate(skill, target.transform);
-        //DamageTarget();
     }
 
 }

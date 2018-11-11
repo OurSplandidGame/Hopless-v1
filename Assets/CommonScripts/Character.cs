@@ -29,6 +29,7 @@ public class Character : MonoBehaviour
     protected bool attacking;
 
     private float timer1s;
+    private float timer01s;
     protected float attackTimer;
     private Vector3 lastPos;
     
@@ -94,10 +95,16 @@ public class Character : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         if (!isActive) return;
-        velocity = (transform.position - lastPos) / Time.deltaTime;
-        lastPos = transform.position;
+        timer01s += Time.deltaTime;
         timer1s += Time.deltaTime;
+        if (timer01s > 0.1)
+        {
+            velocity = (transform.position - lastPos) / Time.deltaTime;
+            lastPos = transform.position;
+            timer01s = 0;
+        }
 
+        
         //Restore health
         if (health < maxHealth)
         {
@@ -115,6 +122,7 @@ public class Character : MonoBehaviour
 
         attackTimer += Time.deltaTime;
         if (attackTimer >= attackInterval) attackTimer = attackInterval + 1;
+        if (debug) print("Speed :" + velocity.magnitude);
         AnimMove(velocity.magnitude);
     }
 

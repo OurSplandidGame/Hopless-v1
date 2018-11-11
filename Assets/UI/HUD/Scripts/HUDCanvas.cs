@@ -30,10 +30,16 @@ public class HUDCanvas : MonoBehaviour
     {
         player = target.GetComponent<PlayerController>();
         bossScript = boss.GetComponent<BossAnimal>();
+
+        healthSlider.maxValue = player.maxHealth;
         healthSlider.value = player.health;
+
+        manaSlider.maxValue = player.maxMana;
+        manaSlider.value = player.mana;
+
         bossHealthSlider.maxValue = bossScript.maxHealth;
         bossHealthSlider.value = bossScript.health;
-        manaSlider.value = player.mana;
+        
         SurvivalUI.SetActive(true);
         BagUI.SetActive(true);
         deadUI.SetActive(false);
@@ -42,14 +48,21 @@ public class HUDCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(target.transform.position, boss.transform.position) < 10 && bossHealthSlider.value > 0)
+        if (boss != null && bossScript != null)
         {
-            BossUI.SetActive(true);
+            //bossHealthSlider.value = Mathf.Lerp(bossHealthSlider.value, bossScript.health, flashSpeed * Time.deltaTime);
+            //print(bossScript.health);
+            bossHealthSlider.value = bossScript.health;
+            if (Vector3.Distance(target.transform.position, boss.transform.position) < 10 && bossHealthSlider.value > 0)
+            {
+                BossUI.SetActive(true);
+            }
+            else
+            {
+                BossUI.SetActive(false);
+            }
         }
-        else
-        {
-            BossUI.SetActive(false);
-        }
+
 
         if (healthSlider.value > player.health)
         {
@@ -62,11 +75,7 @@ public class HUDCanvas : MonoBehaviour
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         healthSlider.value = player.health;
-        //bossHealthSlider.value = Mathf.Lerp(bossHealthSlider.value, bossScript.health, flashSpeed * Time.deltaTime);
-        //print(bossScript.health);
-        bossHealthSlider.value = bossScript.health;
         manaSlider.value = player.mana;
-        //print(bossHealthSlider.value);
         if (healthSlider.value == 0)
         {
             SurvivalUI.SetActive(false);
