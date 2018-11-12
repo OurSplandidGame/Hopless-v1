@@ -6,9 +6,8 @@ public class Rotate : MonoBehaviour {
     public GameObject front;
     public GameObject back;
     public float duration = 60;
-    public ItemDataBaseList itemDatabase;
 
-    private int itemId;
+    private ItemData item;
     // Use this for initialization
     void Start () {
     }
@@ -24,19 +23,18 @@ public class Rotate : MonoBehaviour {
         }
 	}
 
-    public void updateItemInfo(int id)
+    public void updateItemInfo(ItemData newItem)
     {
-        Item item = itemDatabase.getItemByID(id);
-        front.GetComponent<Renderer>().material.mainTexture = item.itemIcon.texture;
-        back.GetComponent<Renderer>().material.mainTexture = item.itemIcon.texture;
-        front.GetComponent<Renderer>().material.SetTexture("_EmissionMap", item.itemIcon.texture);
-        back.GetComponent<Renderer>().material.SetTexture("_EmissionMap", item.itemIcon.texture);
-        this.itemId =id;
+        item = newItem;
+        front.GetComponent<Renderer>().material.mainTexture = item.ItemIcon.texture;
+        back.GetComponent<Renderer>().material.mainTexture = item.ItemIcon.texture;
+        front.GetComponent<Renderer>().material.SetTexture("_EmissionMap", item.ItemIcon.texture);
+        back.GetComponent<Renderer>().material.SetTexture("_EmissionMap", item.ItemIcon.texture);
     }
 
-    public int getItemId()
+    public ItemData getItem()
     {
-        return this.itemId;
+        return this.item;
     }
 
 

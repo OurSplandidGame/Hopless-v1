@@ -6,7 +6,7 @@ using UnityEngine;
 public class BossAnimal : AiCharacter
 {
     public GameObject dropObj;
-    public int[] dropItemIds;
+    public ItemData[] dropItems;
 
     public GameObject skill;
     public int SkillDamage;
@@ -38,12 +38,12 @@ public class BossAnimal : AiCharacter
 
     protected override void AnimDie()
     {
-        if (dropItemIds.Length > 0)
+        if (dropItems.Length > 0)
         {
             GameObject drop = Instantiate(dropObj, transform.position, transform.rotation);
             Rotate rotate = drop.GetComponent<Rotate>();
-            int index = Random.Range(0, dropItemIds.Length - 1);
-            rotate.updateItemInfo(dropItemIds[index]);
+            int index = Random.Range(0, dropItems.Length - 1);
+            rotate.updateItemInfo(dropItems[index]);
         }
         base.AnimDie();
         sun.GetComponent<Sun>().Dawn();
