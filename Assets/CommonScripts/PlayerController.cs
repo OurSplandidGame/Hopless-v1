@@ -19,6 +19,7 @@ public class PlayerController : Character {
     public Camera cam;
     public ParticleSystem attackEffect;
     private CharacterController player;
+    private ConsumableInventory consumableInventory;
     int floorMask;
     float skill1_Timer;
     public AudioClip[] Audios;
@@ -37,6 +38,7 @@ public class PlayerController : Character {
         skill2.GetComponent<Explosion>().attacker = gameObject;
         audioSource = GetComponent<AudioSource>();
         script = hudCanvas.GetComponent<HUDCanvas>();
+        consumableInventory = GetComponent<ConsumableInventory>();
     }
 
     protected override void FixedUpdate()
@@ -100,6 +102,7 @@ public class PlayerController : Character {
         {
             PlayerInventory playerInventory = gameObject.GetComponent<PlayerInventory>();
             Rotate rotate = other.gameObject.GetComponent<Rotate>();
+            consumableInventory.addToInventory((ConsumableData)rotate.getItem());
             //playerInventory.addItemToInventory(rotate.getItemId());
             Destroy(other.gameObject);
             audioSource.clip = Audios[0];
