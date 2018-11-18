@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New ConsumableData", menuName = "Consumable Data", order = 1)]
 public class ConsumableData : ItemData {
     [SerializeField]
-    private int healthChange;
+    private float healthChange;
     [SerializeField]
-    private int manaChange;
+    private float manaChange;
     [SerializeField]
-    private int hungerChange;
+    private float hungerChange;
 
-    public int HealthChange
+    public float HealthChange
     {
         get
         {
@@ -19,7 +19,7 @@ public class ConsumableData : ItemData {
         }
     }
 
-    public int ManaChange
+    public float ManaChange
     {
         get
         {
@@ -27,7 +27,7 @@ public class ConsumableData : ItemData {
         }
     }
 
-    public int HungerChange
+    public float HungerChange
     {
         get
         {
