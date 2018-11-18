@@ -166,7 +166,7 @@ public class Character : MonoBehaviour
         AnimDie();
     }
 
-    protected virtual void Attack()
+    public virtual void Attack()
     {
         attacking = true;
         AnimAttack();
