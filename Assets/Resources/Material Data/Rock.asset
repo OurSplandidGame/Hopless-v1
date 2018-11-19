@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caa9c500c16b9d34a955ed46c4dd879b, type: 3}
-  m_Name: New MaterialData
+  m_Name: Rock
   m_EditorClassIdentifier: 
   itemName: 
   itemDescription: 
