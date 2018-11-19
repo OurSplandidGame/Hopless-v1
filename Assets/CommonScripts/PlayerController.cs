@@ -195,13 +195,19 @@ public class PlayerController : Character {
 
     public void Skill3(Vector3 position)
     {
-        Ray camRay = Camera.main.ScreenPointToRay(position);
-        RaycastHit floorHit;
-
-        if (Physics.Raycast(camRay, out floorHit, 100f, floorMask))
+        position.y += 50;
+        RaycastHit hit = new RaycastHit();
+        if (Physics.Raycast(position, new Vector3(0, -1, 0), out hit, 100f))
         {
-            //print(floorHit.point);
-            Instantiate(tow, floorHit.point, transform.rotation);
+            if (hit.collider.tag == "Floor")
+            {
+                Instantiate(tow, hit.point, transform.rotation);
+            }
+            else
+            {
+                //print(hit.collider.tag);
+                return;
+            }
         }
     }
 

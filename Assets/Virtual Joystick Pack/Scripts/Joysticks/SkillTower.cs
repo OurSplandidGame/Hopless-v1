@@ -69,7 +69,6 @@ public class SkillTower : Joystick
         goRight = Vector3.Normalize(goRight);
         moveDir = (goRight * Horizontal + goFront * Vertical) * 5;
         circle.RelativePos = moveDir;
-
     }
 
     void Update()

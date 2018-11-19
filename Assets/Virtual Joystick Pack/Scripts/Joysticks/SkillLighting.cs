@@ -22,6 +22,8 @@ public class SkillLighting : Joystick
         player = character.GetComponent<PlayerController>();
         smallCircle.SetActive(false);
         largeCircle.SetActive(false);
+        smallCircle.transform.localScale *= 2;
+        largeCircle.transform.localScale *= 2;
         img = transform.GetChild(0).GetComponent<Image>();
         circle = smallCircle.GetComponent<Circle>();
         isDown = false;
