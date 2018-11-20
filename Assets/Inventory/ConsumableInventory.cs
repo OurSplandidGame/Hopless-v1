@@ -7,6 +7,15 @@ public class ConsumableInventory : MonoBehaviour {
     private ConsumableData[] itemsData;
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
     private PlayerController playerController;
+    public ConsumableMenuScrollView menu;
+
+    public List<InventoryItem> InventoryItems
+    {
+        get
+        {
+            return inventoryItems;
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +25,7 @@ public class ConsumableInventory : MonoBehaviour {
         {
             inventoryItems.Add(new InventoryItem(data, 0));
         }
+        menu.generateButtons(inventoryItems);
         Debug.Log("items found: " + inventoryItems.Count);
         // load player controller
         playerController = GetComponent<PlayerController>();
@@ -24,10 +34,10 @@ public class ConsumableInventory : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        inventoryItems.ForEach(item =>
+        /*inventoryItems.ForEach(item =>
         {
             Debug.Log("Item " + item.Data.ItemName + " : " + item.Quantity);
-        });
+        });*/
     }
 
     public void addToInventory(ConsumableData data)
@@ -35,7 +45,10 @@ public class ConsumableInventory : MonoBehaviour {
         inventoryItems.ForEach(item =>
         {
             if (item.Data == data)
+            {
                 item.changeQuantiy(1);
+                menu.updateItemQuantity(item);
+            }
         });
     }
 
@@ -48,6 +61,7 @@ public class ConsumableInventory : MonoBehaviour {
                 playerController.health = (playerController.health + data.HealthChange > playerController.maxHealth) ? playerController.maxHealth : playerController.health + data.HealthChange;
                 playerController.mana = (playerController.mana + data.ManaChange > playerController.maxMana) ? playerController.maxMana : playerController.mana + data.ManaChange;
                 item.changeQuantiy(-1);
+                menu.updateItemQuantity(item);
             }
         });
     }
