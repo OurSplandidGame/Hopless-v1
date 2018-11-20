@@ -18,7 +18,7 @@ public class Animal : AiCharacter
         {
             GameObject drop = Instantiate(dropObj, transform.position, transform.rotation);
             Rotate rotate = drop.GetComponent<Rotate>();
-            int index = Random.Range(0, dropItems.Length - 1);
+            int index = Random.Range(0, dropItems.Length);
             rotate.updateItemInfo(dropItems[index]);
         }
 
