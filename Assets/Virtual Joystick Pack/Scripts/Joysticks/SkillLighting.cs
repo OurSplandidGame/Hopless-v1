@@ -33,7 +33,7 @@ public class SkillLighting : Joystick
     {
         if (!player.Skill2Ready() || !isDown) return;
         Vector2 direction = eventData.position - joystickPosition;
-        inputVector = (direction.magnitude > background.sizeDelta.x / 2f) ? direction.normalized : direction / (background.sizeDelta.x / 2f);
+        inputVector = (direction.magnitude > background.sizeDelta.x / 2f) ? direction.normalized : direction / (background.sizeDelta.x / 2f) ;
         ClampJoystick();
         handle.anchoredPosition = (inputVector * background.sizeDelta.x / 2f) * handleLimit;
         moveCircle();
@@ -56,6 +56,7 @@ public class SkillLighting : Joystick
         isDown = false;
         smallCircle.SetActive(false);
         largeCircle.SetActive(false);
+        
         player.Skill1(smallCircle.transform.position);
         inputVector = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
@@ -70,7 +71,7 @@ public class SkillLighting : Joystick
         Vector3 goRight = player.cam.transform.right;
         goRight.y = 0;
         goRight = Vector3.Normalize(goRight);
-        moveDir = (goRight * Horizontal + goFront * Vertical) * 5;
+        moveDir = (goRight * Horizontal + goFront * Vertical) * 9;
         circle.RelativePos = moveDir;
     }
 

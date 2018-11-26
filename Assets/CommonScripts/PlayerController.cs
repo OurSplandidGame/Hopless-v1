@@ -54,6 +54,7 @@ public class PlayerController : Character {
     {
         base.FixedUpdate();
         if (!isActive) return;
+        //print(transform.position);
         /*if (Input.GetKeyDown("j") && !attacking)
         {
             Move(new Vector3());

@@ -122,7 +122,7 @@ public class Character : MonoBehaviour
 
         attackTimer += Time.deltaTime;
         if (attackTimer >= attackInterval) attackTimer = attackInterval + 1;
-        if (debug) print("Speed :" + velocity.magnitude);
+        //if (debug) print("Speed :" + velocity.magnitude);
         AnimMove(velocity.magnitude);
     }
 

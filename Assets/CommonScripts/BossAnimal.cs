@@ -15,25 +15,51 @@ public class BossAnimal : AiCharacter
     //public AudioClip[] Audios;
     private AudioSource audioSource;
 
+    public Spawner sp1;
+    public Spawner sp2;
+
     protected override void Awake()
     {
         base.Awake();
         audioSource = GetComponent<AudioSource>();
+        skill.GetComponent<MagicalFX.FX_SpawnDirection>().attacker = gameObject;
+        
     }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        if (!isActive)
+        {
+            sp1.enabled = false;
+            sp2.enabled = false;
+            return;
+        }
+        if(target == null)
+        {
+            sp2.enabled = true;
+            sp1.burst = 3;
+            sp2.burst = 1;
+        }
+        else
+        {
+            sp1.burst = 2;
+            sp2.enabled = false;
+        }
+        if (target != null  && !attacking)
+        {
+            if(Random.Range(0.0f, 1000.0f) <= 6f)
+                animator.SetTrigger("Attack");
+        }
+    }
     protected override void AnimAttack()
     {
        
         base.AnimAttack();
 
-        float num = Random.Range(0.0f, 5.0f);
-        if(num <= 1.0f){
-            animator.SetTrigger("Attack");
-        }
-        else{
-            animator.SetTrigger("Skill1");
-           
-        } 
+
+        animator.SetTrigger("Skill1");
+
     }
 
     protected override void AnimDie()
@@ -60,9 +86,13 @@ public class BossAnimal : AiCharacter
 
     protected void Skill()
     {
-
-        GameObject player = GameObject.Find("Player");
-        Instantiate(skill, player.transform.position, skill.transform.rotation);
+        
+        Vector3 t = target.transform.position;
+        t.y = 0;
+        Vector3 o = transform.position;
+        o.y = 0;
+        Quaternion dir = Quaternion.LookRotation(t - o);
+        Instantiate(skill, transform.position, dir);
 
     }
 

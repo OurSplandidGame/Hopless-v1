@@ -15,5 +15,5 @@ MonoBehaviour:
   itemDescription: 
   itemIcon: {fileID: 21300000, guid: b50b97c8f9c10a3499187da7c6bdd61d, type: 3}
   healthChange: 0
-  manaChange: 15
+  manaChange: 35
   hungerChange: 0

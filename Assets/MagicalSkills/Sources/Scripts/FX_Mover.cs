@@ -12,6 +12,7 @@ public class FX_Mover : MonoBehaviour
 		public Vector3 Noise = Vector3.zero;
 		public float Damping = 0.3f;
 		Quaternion direction;
+        public GameObject target;
 
 		void Start ()
 		{
@@ -21,7 +22,9 @@ public class FX_Mover : MonoBehaviour
 	
 		void LateUpdate ()
 		{
-			this.transform.rotation = Quaternion.Lerp (this.transform.rotation, direction, Damping);
+            if(target != null)
+                direction = Quaternion.LookRotation(target.transform.position - transform.position);
+            this.transform.rotation = Quaternion.Lerp (this.transform.rotation, direction, Damping);
 			this.transform.position += this.transform.forward * Speed * Time.deltaTime;
 		}
 	}

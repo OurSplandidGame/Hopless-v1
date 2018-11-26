@@ -14,10 +14,11 @@ public class AiCharacter : Character
     protected float loseTargetTimer;
    
     private float strollTimer;
-
+    private NavMeshPath path;
     protected override void Awake()
     {
         base.Awake();
+        path = new NavMeshPath();
         nav = GetComponent<NavMeshAgent>();
 
     }
@@ -88,7 +89,15 @@ public class AiCharacter : Character
     //Follow target when target is locked
     protected virtual void FollowTarget()
     {
-        nav.SetDestination(target.transform.position);
+        //if(Vector3.Distance(target.transform.position, nav.destination) > 0.1)
+        float diff = Vector3.Distance(target.transform.position, nav.destination);
+        float dist = Vector3.Distance(target.transform.position, transform.position);
+        if (!nav.pathPending && diff > dist/5)
+        {
+            nav.CalculatePath(target.transform.position, path);
+            nav.SetPath(path);
+            //nav.SetDestination(target.transform.position);
+        }
     }
 
     protected virtual void AI()
@@ -113,10 +122,12 @@ public class AiCharacter : Character
         }
         else if (nav != null &&  strolling && nav.isActiveAndEnabled)
         {
+            if (debug) print("123123~~~~~~~~~~~~~~");
             Strolling();
         }
         else if (nav != null && nav.isActiveAndEnabled)
         {
+            if (debug) print("123123~~~~~~~~~~~~~~");
             nav.ResetPath();
         }
     }

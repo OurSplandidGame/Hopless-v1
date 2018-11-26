@@ -67,7 +67,7 @@ public class SkillTower : Joystick
         Vector3 goRight = player.cam.transform.right;
         goRight.y = 0;
         goRight = Vector3.Normalize(goRight);
-        moveDir = (goRight * Horizontal + goFront * Vertical) * 5;
+        moveDir = (goRight * Horizontal + goFront * Vertical) * 9;
         circle.RelativePos = moveDir;
     }
 

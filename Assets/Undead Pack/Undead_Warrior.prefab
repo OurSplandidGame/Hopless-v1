@@ -1138,10 +1138,10 @@ MonoBehaviour:
   discoverAngle: 360
   attackRange: 3
   attackAngle: 180
-  attackInterval: 1
-  damage: 7
-  maxHealth: 65
-  health: 65
+  attackInterval: 0.5
+  damage: 5
+  maxHealth: 60
+  health: 60
   healthRestore: 0
   enemyTagList:
   - Player
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   loseTargetRange: 35
   loseTargetTime: 10
   dropObj: {fileID: 0}
-  dropItemIds: 
+  dropItems: []
 --- !u!136 &136358372218856738
 CapsuleCollider:
   m_ObjectHideFlags: 1

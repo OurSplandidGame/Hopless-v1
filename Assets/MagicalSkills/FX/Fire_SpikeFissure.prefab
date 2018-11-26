@@ -72,15 +72,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f0b82b6ced6f4b8a9175bf4a451aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
-  Frequency: 1.5
+  Number: 10
+  Frequency: 2
   FixRotation: 0
   Normal: 0
   FXSpawn: {fileID: 126956, guid: 2a198d954f4dddb4083b762e69b561ff, type: 2}
-  LifeTime: 20
-  TimeSpawn: 0.01
+  LifeTime: 0.5
+  TimeSpawn: 0.017
   UseObjectForward: 1
   Direction: {x: 0, y: 0, z: 1}
+  attacker: {fileID: 0}
 --- !u!114 &11478730
 MonoBehaviour:
   m_ObjectHideFlags: 1

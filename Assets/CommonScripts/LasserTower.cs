@@ -40,7 +40,15 @@ public class LasserTower : AiCharacter {
     {
         base.AnimAttack();
         lightTimer = flashTime;
-        Instantiate(skill, target.transform);
+        Transform T = Transform.Instantiate(tip.transform);
+
+        T.position = transform.position + new Vector3(0 , 2, 0);
+
+        T.rotation = Quaternion.LookRotation(target.transform.position - T.position);
+        FX_Mover mover = skill.GetComponent<FX_Mover>();
+        if (mover != null) mover.target = target;
+        Instantiate(skill, T);
+        //Instantiate(skill, target.transform);
     }
 
 }

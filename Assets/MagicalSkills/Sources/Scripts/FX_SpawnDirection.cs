@@ -15,12 +15,17 @@ namespace MagicalFX
 		private float timeTemp;
 		public bool UseObjectForward = true;
 		public Vector3 Direction = Vector3.forward;
-		
+        public GameObject attacker;
+
+
 		void Start ()
 		{
 			counter = 0;
 			timeTemp = Time.time;
-			if (TimeSpawn <= 0) {
+            AOE aoe = FXSpawn.GetComponent<AOE>();
+            if (aoe != null) aoe.attacker = attacker;
+
+            if (TimeSpawn <= 0) {
 				for (int i=0; i<Number-1; i++) {
 					if (UseObjectForward) {
 						Direction = this.transform.forward;

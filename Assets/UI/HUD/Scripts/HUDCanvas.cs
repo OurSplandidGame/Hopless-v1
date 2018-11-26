@@ -29,7 +29,7 @@ public class HUDCanvas : MonoBehaviour
     void Start()
     {
         player = target.GetComponent<PlayerController>();
-        bossScript = boss.GetComponent<BossAnimal>();
+        //bossScript = boss.GetComponent<BossAnimal>();
 
         healthSlider.maxValue = player.maxHealth;
         healthSlider.value = player.health;
@@ -37,29 +37,41 @@ public class HUDCanvas : MonoBehaviour
         manaSlider.maxValue = player.maxMana;
         manaSlider.value = player.mana;
 
-        bossHealthSlider.maxValue = bossScript.maxHealth;
-        bossHealthSlider.value = bossScript.health;
+        //bossHealthSlider.maxValue = bossScript.maxHealth;
+        //bossHealthSlider.value = bossScript.health;
         
         SurvivalUI.SetActive(true);
         BagUI.SetActive(true);
         deadUI.SetActive(false);
+        BossUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (boss != null && bossScript != null)
         {
             //bossHealthSlider.value = Mathf.Lerp(bossHealthSlider.value, bossScript.health, flashSpeed * Time.deltaTime);
             //print(bossScript.health);
             bossHealthSlider.value = bossScript.health;
-            if (Vector3.Distance(target.transform.position, boss.transform.position) < 10 && bossHealthSlider.value > 0)
+            if (Vector3.Distance(target.transform.position, boss.transform.position) < 15 && bossHealthSlider.value > 0)
             {
                 BossUI.SetActive(true);
             }
             else
             {
                 BossUI.SetActive(false);
+            }
+        }
+        else
+        {
+            boss = GameObject.FindGameObjectWithTag("Boss");
+            if(boss != null)
+            {
+                bossScript = boss.GetComponent<BossAnimal>();
+                bossHealthSlider.maxValue = bossScript.maxHealth;
+                bossHealthSlider.value = bossScript.health;
             }
         }
 

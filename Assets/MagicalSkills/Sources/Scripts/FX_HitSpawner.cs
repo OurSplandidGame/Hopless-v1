@@ -13,8 +13,10 @@ namespace MagicalFX
 		public GameObject FXSpawn;
 		public bool DestoyOnHit = false;
 		public bool FixRotation = false;
+        public bool OnlyHitFloor = true;
 		public float LifeTimeAfterHit = 1;
 		public float LifeTime = 0;
+
 	
 		void Start ()
 		{
@@ -42,7 +44,7 @@ namespace MagicalFX
 	
 		void OnTriggerEnter (Collider other)
 		{
-            if (other.gameObject.tag == "Floor")
+            if (!OnlyHitFloor || other.gameObject.tag == "Floor")
             {
                 Character script = attacker.GetComponent<Character>();
                 List<GameObject> targets =  script.GetEnemies();

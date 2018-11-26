@@ -390,7 +390,7 @@ MonoBehaviour:
   debug: 0
   discoverRange: 10
   discoverAngle: 360
-  attackRange: 15
+  attackRange: 18
   attackAngle: 360
   attackInterval: 2
   damage: 10
@@ -407,7 +407,7 @@ MonoBehaviour:
   loseTargetRange: 10
   loseTargetTime: 0.01
   tip: {fileID: 1976273000337732}
-  skill: {fileID: 157914, guid: 6d835200792518542a1a8c56a69409b2, type: 2}
+  skill: {fileID: 153748, guid: 51a4e25950740af479038a05b925ecc1, type: 2}
 --- !u!120 &120235040728636600
 LineRenderer:
   m_ObjectHideFlags: 1

@@ -173,6 +173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ffe117472f28a42ae488a517f0f3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attacker: {fileID: 0}
+  range: 3
+  damage: 120
   FXSpawn: {fileID: 112930, guid: e576d0e70cd4a614ab4b543fdee1999b, type: 2}
   DestoyOnHit: 1
   FixRotation: 0
@@ -208,6 +211,7 @@ MonoBehaviour:
   Speed: 10
   Noise: {x: 0, y: 0, z: 0}
   Damping: 0.3
+  target: {fileID: 0}
 --- !u!135 &13513368
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -4909,7 +4913,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -4962,7 +4966,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -5015,7 +5019,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -5068,7 +5072,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:

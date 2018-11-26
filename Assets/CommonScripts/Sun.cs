@@ -6,6 +6,7 @@ public class Sun : MonoBehaviour {
     public int secondsPerDay = 1;
     public GameObject[] trans;
     public GameObject bossObj;
+    public GameObject bossPos;
     public AudioClip[] backGroundMuisc;
     private AudioSource audio;
     private float speed;
@@ -27,7 +28,7 @@ public class Sun : MonoBehaviour {
     //
     public void Dawn()
     {
-        transform.rotation = Quaternion.Euler(350, 0, 0);
+        transform.rotation = Quaternion.Euler(353, 0, 0);
         speed = savedSpeed;
         savedSpeed = 0;
     }
@@ -42,6 +43,8 @@ public class Sun : MonoBehaviour {
         if(angle > 182 && angle < 187 && day)
         {
             print("-----------------------------night---------------------------------");
+            bossObj = Instantiate(bossObj, bossPos.transform);
+            bossObj.GetComponent<BossAnimal>().sun = gameObject;
             audio.clip = backGroundMuisc[1];
             audio.Play();
             GameObject[] spawner = GameObject.FindGameObjectsWithTag("Spawner");

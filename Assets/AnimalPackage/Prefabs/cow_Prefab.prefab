@@ -1047,8 +1047,8 @@ MonoBehaviour:
   loseTargetTime: 5
   dropObj: {fileID: 1708825600953708, guid: c18ab21e8895da94080852241bca8d4d, type: 2}
   dropItems:
-  - {fileID: 11400000, guid: 8598317f951f9b641891bc2c527abf83, type: 2}
-  - {fileID: 11400000, guid: 0a9120db177f0ff41a56f6b4f7004349, type: 2}
+  - {fileID: 11400000, guid: 86e4f3ffbfecbbe47934cb859752989f, type: 2}
+  - {fileID: 11400000, guid: 575d9abda7002fc4aabf3a5458ed3459, type: 2}
 --- !u!135 &135626735155678672
 SphereCollider:
   m_ObjectHideFlags: 1

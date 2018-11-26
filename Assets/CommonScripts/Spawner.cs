@@ -5,9 +5,11 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     public GameObject obj;
+    public GameObject effect;
     public uint max = 7;
     public uint interval = 5;
     public float probability = 0.7f;
+    public uint burst = 1;
 
     public float rangeMin = 0;
     public float rangeMax = 20;
@@ -35,24 +37,33 @@ public class Spawner : MonoBehaviour {
 
             if(Random.Range(0.0f, 1.0f) <= factor)
             {
-                float dist = Mathf.Sqrt(Random.Range(0f, 1f)) * rangeMax;
-                float rot = Random.Range(0f, 1f) * 2 * Mathf.PI;
-                Vector3 pos = new Vector3(dist * Mathf.Sin(rot), 50, dist * Mathf.Cos(rot));
-                pos += transform.position;
-
-                RaycastHit hit = new RaycastHit();
-                if (Physics.Raycast(pos, new Vector3(0, -1, 0), out hit, 100f))
+                uint tmp = burst;
+                uint numTry = 100;
+                while(tmp != 0 && numTry != 0)
                 {
-                    if (hit.collider.tag == "Floor")
+                    
+                    float dist = Mathf.Sqrt(Random.Range(0f, 1f)) * rangeMax;
+                    float rot = Random.Range(0f, 1f) * 2 * Mathf.PI;
+                    Vector3 pos = new Vector3(dist * Mathf.Sin(rot), 50, dist * Mathf.Cos(rot));
+                    pos += transform.position;
+
+                    RaycastHit hit = new RaycastHit();
+                    if (Physics.Raycast(pos, new Vector3(0, -1, 0), out hit, 100f))
                     {
-                        Instantiate(obj, hit.point, transform.rotation);
-                    }
-                    else
-                    {
-                        //print(hit.collider.tag);
-                        return;
-                    }
+                        if (hit.collider.tag == "Floor")
+                        {
+                            if(effect != null)
+                                Instantiate(effect, hit.point, transform.rotation);
+                            Instantiate(obj, hit.point, transform.rotation);
+                            tmp--;
+                        }
+                        else
+                        {
+                            numTry--;
+                        }
+                    } else numTry--;
                 }
+
             }
         }
     }
