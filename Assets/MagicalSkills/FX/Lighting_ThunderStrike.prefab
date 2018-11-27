@@ -288,11 +288,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attacker: {fileID: 0}
-  range: 5
-  damage: 50
+  range: 3.5
+  damage: 80
   FXSpawn: {fileID: 166620, guid: 2b55b3ea3a8c41e4698946f3edfd2b59, type: 2}
   DestoyOnHit: 1
   FixRotation: 0
+  OnlyHitFloor: 1
   LifeTimeAfterHit: 1
   LifeTime: 5
 --- !u!114 &11449240

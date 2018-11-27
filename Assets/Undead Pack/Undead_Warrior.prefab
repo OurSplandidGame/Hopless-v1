@@ -1138,10 +1138,10 @@ MonoBehaviour:
   discoverAngle: 360
   attackRange: 3
   attackAngle: 180
-  attackInterval: 0.5
+  attackInterval: 1
   damage: 5
-  maxHealth: 60
-  health: 60
+  maxHealth: 50
+  health: 50
   healthRestore: 0
   enemyTagList:
   - Player

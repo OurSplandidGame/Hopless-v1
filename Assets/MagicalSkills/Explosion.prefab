@@ -604,8 +604,8 @@ MonoBehaviour:
   attacker: {fileID: 0}
   clear: 3
   delay: 1.5
-  damage: 500
-  range: 3.5
+  damage: 150
+  range: 4.5
 --- !u!198 &198041985351550148
 ParticleSystem:
   m_ObjectHideFlags: 1

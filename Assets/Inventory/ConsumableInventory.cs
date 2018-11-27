@@ -17,8 +17,64 @@ public class ConsumableInventory : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
-	void Start () {
+    public int MpPotion
+    {
+        get
+        {
+            int res = 0;
+            inventoryItems.ForEach(item =>
+            {
+                if ((item.Data.name == "Large Mana Potion"))
+                {
+                    res = item.Quantity;
+                }
+            });
+            return res;
+        }
+    }
+
+    public int HpPotion
+    {
+        get
+        {
+            int res = 0;
+            inventoryItems.ForEach(item =>
+            {
+                if ((item.Data.name == "Large Health Potion"))
+                {
+                    res = item.Quantity;
+                }
+            });
+            return res;
+        }
+    }
+
+    public void ConsumeHpPotion(int num)
+    {
+        inventoryItems.ForEach(item =>
+        {
+            if ((item.Data.name == "Large Health Potion") && item.enoughQuantity(num))
+            {
+                item.changeQuantiy(-num);
+                menu.updateItemQuantity(item);
+            }
+        });
+    }
+
+    public void ConsumeMpPotion(int num)
+    {
+        inventoryItems.ForEach(item =>
+        {
+            if ((item.Data.name == "Large Mana Potion") && item.enoughQuantity(num))
+            {
+                item.changeQuantiy(-num);
+                menu.updateItemQuantity(item);
+            }
+        });
+    }
+
+    // Use this for initialization
+    void Start () {
         // load static item data
         itemsData = Resources.LoadAll<ConsumableData>("Consumable Data");
         foreach (ConsumableData data in itemsData)

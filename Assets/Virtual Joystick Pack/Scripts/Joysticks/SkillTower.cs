@@ -8,6 +8,7 @@ public class SkillTower : Joystick
     private Camera cam = new Camera();
     public GameObject character;
     private PlayerController player;
+    private ConsumableInventory inv;
     public GameObject smallCircle;
     public GameObject largeCircle;
     private Circle circle;
@@ -15,11 +16,14 @@ public class SkillTower : Joystick
     private Vector3 moveDir;
     private Image img;
     private bool isDown;
+    private bool isReady;
 
     void Start()
     {
+        isReady = false;
         joystickPosition = RectTransformUtility.WorldToScreenPoint(cam, background.position);
         player = character.GetComponent<PlayerController>();
+        inv = character.GetComponent<ConsumableInventory>();
         smallCircle.SetActive(false);
         largeCircle.SetActive(false);
         img = transform.GetChild(0).GetComponent<Image>();
@@ -29,7 +33,7 @@ public class SkillTower : Joystick
 
     public override void OnDrag(PointerEventData eventData)
     {
-        if (!player.Skill3Ready() || !isDown) return;
+        if (!isReady || !isDown) return;
         Vector2 direction = eventData.position - joystickPosition;
         inputVector = (direction.magnitude > background.sizeDelta.x / 2f) ? direction.normalized : direction / (background.sizeDelta.x / 2f);
         ClampJoystick();
@@ -39,18 +43,19 @@ public class SkillTower : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if (!player.Skill3Ready()) return;
+        if (!isReady) return;
         isDown = true;
         smallCircle.SetActive(true);
         largeCircle.SetActive(true);
         smallCircle.transform.position = player.transform.position;
         OnDrag(eventData);
-
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        if (!player.Skill3Ready() || !isDown) return;
+        if (!isReady || !isDown) return;
+        inv.ConsumeHpPotion(1);
+        inv.ConsumeMpPotion(1);
         isDown = false;
         smallCircle.SetActive(false);
         largeCircle.SetActive(false);
@@ -71,14 +76,16 @@ public class SkillTower : Joystick
         circle.RelativePos = moveDir;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (!player.Skill3Ready())
+        if (!player.Skill3Ready() || inv.HpPotion < 1 || inv.MpPotion < 1)
         {
+            isReady = false;
             img.color = Color.gray;
         }
         else
         {
+            isReady = true;
             img.color = Color.white;
         }
     }

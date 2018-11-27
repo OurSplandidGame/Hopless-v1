@@ -121,6 +121,7 @@ public class PlayerController : Character {
     }
     public void Move(Vector3 velocity)
     {
+        if (!isActive) return;
         player.transform.forward =Vector3.Lerp(velocity, player.transform.forward,2.0f*Time.deltaTime);
         player.SimpleMove(velocity);
     }

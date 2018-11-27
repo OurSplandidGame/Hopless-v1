@@ -23394,4 +23394,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attacker: {fileID: 0}
   range: 2
-  damage: 10
+  damage: 5

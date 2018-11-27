@@ -1779,8 +1779,8 @@ MonoBehaviour:
   discoverAngle: 360
   attackRange: 4.2
   attackAngle: 180
-  attackInterval: 1.2
-  damage: 5
+  attackInterval: 1.4
+  damage: 7
   maxHealth: 65
   health: 65
   healthRestore: 0
